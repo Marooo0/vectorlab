@@ -179,6 +179,10 @@
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 4 3 8l4 4"/><path d="M3 8h13a4 4 0 0 1 0 8h-2"/><path d="m17 12 4 4-4 4"/></svg>
               <span data-i18n="swap">Swap</span>
             </button>
+            <button type="button" class="btn btn-ghost" id="randomBtn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M8 8h.01M16 8h.01M8 16h.01M16 16h.01M12 12h.01"/></svg>
+              <span data-i18n="randomVectors">Random vectors</span>
+            </button>
             <button type="button" class="btn btn-ghost" id="resetBtn">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg>
               <span data-i18n="reset">Reset</span>
@@ -227,6 +231,18 @@
               </div>
               <div class="viz-actions">
                 <span class="hint" data-i18n="vizHint">Drag to rotate · double-click to reset</span>
+                <div class="zoom-controls" role="group" aria-label="Zoom" data-i18n-aria="ariaZoom">
+                  <button type="button" class="icon-btn small" id="zoomOut" aria-label="Zoom out" data-i18n-aria="ariaZoomOut">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14"/></svg>
+                  </button>
+                  <span class="zoom-level" id="zoomLevel" aria-live="polite">100%</span>
+                  <button type="button" class="icon-btn small" id="zoomIn" aria-label="Zoom in" data-i18n-aria="ariaZoomIn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+                  </button>
+                  <button type="button" class="icon-btn small" id="zoomReset" aria-label="Reset zoom" data-i18n-aria="ariaZoomReset">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="7"/><path d="M12 8v4l2.5 2.5"/></svg>
+                  </button>
+                </div>
                 <button type="button" class="icon-btn small" id="viewReset" aria-label="Reset view" data-i18n-aria="ariaResetView">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg>
                 </button>

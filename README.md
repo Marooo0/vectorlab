@@ -25,7 +25,8 @@ Made by **Marwan** for **EL Pop**.
 - **2D and 3D** inputs, negatives and decimals supported
 - **Step-by-step solution** for every operation: formula → substitution → calculation → result → meaning
 - **Live results** while typing, with magnitudes, scalar projection, parallelogram and triangle areas, radians and more
-- **Interactive 3D view**: drag to rotate, double-click to reset; shows the parallelogram area, the angle arc, the projection of A on B and the right-hand-rule direction
+- **Interactive 3D view**: larger canvas, drag to rotate, double-click to reset, and zoom in/out with buttons or the mouse wheel; shows the parallelogram area, the angle arc, the projection of A on B and the right-hand-rule direction
+- **Random vectors** button for quick examples in 2D or 3D
 - **Presets** for right angles, parallel vectors, a 3D example and a 2D textbook example
 - **Arabic / English** with full RTL layout
 - **Light / dark theme**, remembered between visits

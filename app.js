@@ -345,7 +345,7 @@ function updateCanvasAria(k) {
    ============================================================ */
 
 const DEFAULT_VIEW = { az: -0.68, el: 0.36 };
-const view = { ...DEFAULT_VIEW };
+const view = { ...DEFAULT_VIEW, zoom: 1 };
 
 let W = 0;
 let H = 0;
@@ -432,7 +432,7 @@ function draw() {
   };
 
   const extent = Math.max(1.4, k.ma, k.mb, state.op === 'cross' ? k.cm * 0.8 : 0) * 1.12;
-  const scale = Math.min(width, height) * 0.41 / extent;
+  const scale = Math.min(width, height) * 0.41 / extent * view.zoom;
   const ox = width * 0.5;
   const oy = height * 0.57;
 
@@ -750,7 +750,50 @@ function setOp(op) {
 function resetView() {
   view.az = DEFAULT_VIEW.az;
   view.el = DEFAULT_VIEW.el;
+  view.zoom = 1;
+  updateZoomLabel();
   draw();
+}
+
+function updateZoomLabel() {
+  const label = $('#zoomLevel');
+  if (label) label.textContent = `${Math.round(view.zoom * 100)}%`;
+}
+
+function zoomIn() {
+  view.zoom = clamp(view.zoom * 1.2, 0.5, 4);
+  updateZoomLabel();
+  draw();
+}
+
+function zoomOut() {
+  view.zoom = clamp(view.zoom / 1.2, 0.5, 4);
+  updateZoomLabel();
+  draw();
+}
+
+function resetZoom() {
+  view.zoom = 1;
+  updateZoomLabel();
+  draw();
+}
+
+function randomVectors() {
+  const makeVec = () => {
+    const out = [0, 0, 0];
+    const count = state.dim === 2 ? 2 : 3;
+    for (let i = 0; i < count; i++) {
+      out[i] = Math.floor(Math.random() * 7) - 3;
+    }
+    if (out.slice(0, count).every((value) => value === 0)) out[0] = 1;
+    if (state.dim === 2) out[2] = 0;
+    return out;
+  };
+
+  state.a = makeVec();
+  state.b = makeVec();
+  syncVectorInputs();
+  update();
 }
 
 let drawQueued = false;
@@ -867,6 +910,8 @@ function bindEvents() {
     update();
   });
 
+  $('#randomBtn').addEventListener('click', randomVectors);
+
   $('#copyBtn').addEventListener('click', async () => {
     const k = compute();
     let text = '';
@@ -902,6 +947,10 @@ function bindEvents() {
 
   $('#viewReset').addEventListener('click', resetView);
 
+  $('#zoomIn').addEventListener('click', zoomIn);
+  $('#zoomOut').addEventListener('click', zoomOut);
+  $('#zoomReset').addEventListener('click', resetZoom);
+
   const scene = $('#scene');
   let drag = null;
 
@@ -928,6 +977,14 @@ function bindEvents() {
   scene.addEventListener('pointerup', endDrag);
   scene.addEventListener('pointercancel', endDrag);
   scene.addEventListener('dblclick', resetView);
+
+  scene.addEventListener('wheel', (event) => {
+    event.preventDefault();
+    const factor = event.deltaY < 0 ? 1.12 : 0.89;
+    view.zoom = clamp(view.zoom * factor, 0.5, 4);
+    updateZoomLabel();
+    draw();
+  }, { passive: false });
 }
 
 /* ============================================================
@@ -941,6 +998,7 @@ function init() {
   syncDimUI();
   syncOpUI();
   bindEvents();
+  updateZoomLabel();
   update();
 
   const canvasWrap = $('.canvas-wrap');

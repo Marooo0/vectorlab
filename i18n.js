@@ -57,6 +57,11 @@ const I18N = {
     copy: 'Copy answer',
     copied: 'Copied!',
     creditMadeBy: 'Made by Marwan for',
+    randomVectors: 'Random vectors',
+    ariaZoom: 'Zoom',
+    ariaZoomIn: 'Zoom in',
+    ariaZoomOut: 'Zoom out',
+    ariaZoomReset: 'Reset zoom',
     footer: 'Made for Egyptian Thanaweya Amma students · values update live',
 
     stepFormula: 'Formula',
@@ -151,6 +156,11 @@ const I18N = {
     copy: 'نسخ الإجابة',
     copied: 'تم النسخ!',
     creditMadeBy: 'من إعداد مروان لـ',
+    randomVectors: 'متجهات عشوائية',
+    ariaZoom: 'تكبير/تصغير',
+    ariaZoomIn: 'تكبير',
+    ariaZoomOut: 'تصغير',
+    ariaZoomReset: 'إعادة ضبط التكبير',
     footer: 'مصمم لطلاب الثانوية العامة في مصر · القيم تُحسب فوريًا',
 
     stepFormula: 'الصيغة',
